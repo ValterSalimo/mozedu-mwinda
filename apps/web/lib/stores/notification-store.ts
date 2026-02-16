@@ -87,7 +87,7 @@ export const useNotificationStore = create<NotificationState>()(
             },
         }),
         {
-            name: 'Ulongo-notifications',
+            name: 'Mwinda-notifications',
         }
     )
 )

@@ -268,7 +268,7 @@ const Hero = () => {
               <br />
               <span className="relative">
                 <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                  Ulongo
+                  Mwinda
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
                   <path d="M2 10C50 4 150 4 198 10" stroke="url(#underline)" strokeWidth="4" strokeLinecap="round" />
@@ -341,7 +341,7 @@ const Hero = () => {
                 </div>
                 <div className="flex-1 mx-4">
                   <div className="w-full max-w-xs mx-auto h-6 rounded-full bg-muted/50 flex items-center justify-center text-xs text-muted-foreground">
-                    ulongo.org
+                    mwinda.mozedu.org
                   </div>
                 </div>
               </div>

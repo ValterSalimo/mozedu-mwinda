@@ -1,5 +1,5 @@
 /**
- * API Client for Ulongo Backend
+ * API Client for Mwinda Backend
  * Following FRONTEND_PROMPT.md pattern with fetch wrapper
  */
 
@@ -12,7 +12,7 @@ import { sanitizeObject } from './sanitize'
 const getApiBaseUrl = () => {
   const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 
-  if (typeof window !== 'undefined' && window.location.hostname === 'localhost' && url.includes('api.Ulongo.org')) {
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost' && url.includes('api.mozedu.org')) {
     console.warn('[API] Detected production URL on localhost. Forcing localhost endpoint.')
     return 'http://localhost:8080'
   }
@@ -337,13 +337,13 @@ function setCsrfCookie(token?: string) {
     const hostname = window.location.hostname
     let domainAttr = ''
 
-    // Set cookie on root domain for production to share with api.Ulongo.org
+    // Set cookie on root domain for production to share with api.mozedu.org
     // Skip for localhost/IPs
     if (hostname !== 'localhost' && hostname !== '127.0.0.1' && !hostname.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
       const parts = hostname.split('.')
       if (parts.length >= 2) {
-        // e.g. "www.Ulongo.org" -> ".Ulongo.org"
-        // This ensures the cookie is sent to "api.Ulongo.org"
+        // e.g. "www.mozedu.org" -> ".mozedu.org"
+        // This ensures the cookie is sent to "api.mozedu.org"
         const rootDomain = parts.slice(-2).join('.')
         domainAttr = `; Domain=.${rootDomain}`
       }

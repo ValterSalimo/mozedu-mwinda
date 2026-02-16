@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Ulongo - Plateforme Éducative Numérique',
+  title: 'Mwinda - Plateforme Éducative Numérique',
   description: 'Écosystème éducatif pour la République Démocratique du Congo',
 }
 

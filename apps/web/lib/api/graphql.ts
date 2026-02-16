@@ -1,5 +1,5 @@
 /**
- * GraphQL Client for Ulongo Backend
+ * GraphQL Client for Mwinda Backend
  * Lightweight GraphQL client using fetch
  */
 
@@ -8,9 +8,9 @@ import { getAccessToken, ApiError, authApi, setTokens } from './client'
 const getGraphqlUrl = () => {
   const url = process.env.NEXT_PUBLIC_GRAPHQL_URL || 'http://localhost:8080/graphql'
 
-  // Fail-safe: If running on localhost but URL points to production (api.Ulongo.org), force localhost
+  // Fail-safe: If running on localhost but URL points to production (api.mozedu.org), force localhost
   // This handles cases where production env vars are stuck in the build
-  if (typeof window !== 'undefined' && window.location.hostname === 'localhost' && url.includes('api.Ulongo.org')) {
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost' && url.includes('api.mozedu.org')) {
     console.warn('[GraphQL] Detected production URL on localhost. Forcing localhost endpoint.')
     return 'http://localhost:8080/graphql'
   }

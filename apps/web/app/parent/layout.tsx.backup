@@ -1,0 +1,212 @@
+'use client'
+
+import { ReactNode } from 'react'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import {
+  LayoutDashboard,
+  Users,
+  GraduationCap,
+  BookOpen,
+  Calendar,
+  FileText,
+  Settings,
+  BarChart3,
+  Building2,
+  Bell,
+  Menu,
+  X,
+  Search,
+  Moon,
+  Sun,
+  LogOut,
+} from 'lucide-react'
+import { useState } from 'react'
+import { Button, Input } from '@mozedu/ui'
+import { LanguageSwitcher } from '../../components/language-switcher'
+import { AuthGuard } from '../../components/auth-guard'
+import { useTranslations } from 'next-intl'
+import { useUser, useAuthStore } from '@/lib/stores'
+
+export default function SchoolLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+  const t = useTranslations('common')
+  const tSchool = useTranslations('school')
+  const user = useUser()
+  const logout = useAuthStore((state) => state.logout)
+
+  // Navigation items with translation keys
+  const navigation = [
+    { key: 'dashboard', href: '/school', icon: LayoutDashboard },
+    { key: 'students', href: '/school/students', icon: Users },
+    { key: 'teachers', href: '/school/teachers', icon: GraduationCap },
+    { key: 'classes', href: '/school/classes', icon: BookOpen },
+    { key: 'schedule', href: '/school/schedule', icon: Calendar },
+    { key: 'reports', href: '/school/reports', icon: FileText },
+    { key: 'analytics', href: '/school/analytics', icon: BarChart3 },
+    { key: 'settings', href: '/school/settings', icon: Settings },
+  ]
+
+  const toggleTheme = () => {
+    setIsDark(!isDark)
+    document.documentElement.classList.toggle('dark')
+  }
+
+  const handleLogout = async () => {
+    await logout()
+    router.push('/auth/login')
+  }
+
+  // Get user initials
+  const initials = user 
+    ? `${user.firstName?.charAt(0) || ''}${user.lastName?.charAt(0) || ''}`.toUpperCase()
+    : 'SA'
+
+  const displayName = user ? `${user.firstName} ${user.lastName}` : 'School Admin'
+
+  return (
+    <AuthGuard requiredRole={['school_admin', 'super_admin']}>
+      <div className="min-h-screen bg-background">
+        {/* Mobile sidebar backdrop */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
+        {/* Sidebar */}
+        <aside
+          className={`fixed top-0 left-0 z-50 h-full w-64 bg-card border-r border-gray-200 transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="flex flex-col h-full">
+            {/* Logo */}
+            <div className="flex items-center justify-between h-16 px-4 border-b">
+              <Link href="/school" className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                  <Building2 className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{tSchool('portal')}</h1>
+                  <p className="text-xs text-muted-foreground">{tSchool('managementPortal')}</p>
+                </div>
+              </Link>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden p-2 rounded-lg hover:bg-muted"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Navigation */}
+            <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+              {navigation.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-foreground hover:bg-background'
+                    }`}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {tSchool(item.key)}
+                  </Link>
+                )
+              })}
+            </nav>
+
+            {/* User info */}
+            <div className="p-4 border-t">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                  {initials}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">
+                    {displayName}
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">{t('schoolAdmin')}</p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  title={t('logout')}
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <div className="lg:pl-64">
+          {/* Top bar */}
+          <header className="sticky top-0 z-30 h-16 bg-card border-b border-border flex items-center justify-between px-4 gap-4">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-lg hover:bg-muted"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+
+            <div className="flex-1 max-w-md hidden md:block">
+              <Input
+                type="search"
+                placeholder={t('search')}
+                leftIcon={<Search className="h-4 w-4 text-muted-foreground" />}
+              />
+            </div>
+
+            <div className="flex items-center gap-4 ml-auto">
+              <LanguageSwitcher />
+
+              <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell className="h-5 w-5" />
+                <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-destructive"></span>
+              </Button>
+
+              <div className="hidden sm:flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                  {initials}
+                </div>
+                <div className="text-sm">
+                  <p className="font-medium text-card-foreground">{displayName}</p>
+                  <p className="text-muted-foreground text-xs">{t('schoolAdmin')}</p>
+                </div>
+              </div>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleLogout}
+                title={t('logout')}
+                className="hidden sm:flex"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
+            </div>
+          </header>
+
+          {/* Page content */}
+          <main className="p-4 lg:p-6">{children}</main>
+        </div>
+      </div>
+    </AuthGuard>
+  )
+}

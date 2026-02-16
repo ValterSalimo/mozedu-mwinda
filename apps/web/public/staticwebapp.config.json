@@ -1,0 +1,41 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/_next/*", "/images/*", "/*.{css,js,json,ico,png,jpg,svg,woff,woff2}"]
+  },
+  "routes": [
+    {
+      "route": "/auth/verify-otp",
+      "rewrite": "/auth/verify-otp/index.html"
+    },
+    {
+      "route": "/auth/login",
+      "rewrite": "/auth/login/index.html"
+    },
+    {
+      "route": "/auth/register",
+      "rewrite": "/auth/register/index.html"
+    },
+    {
+      "route": "/auth/logout",
+      "rewrite": "/auth/logout/index.html"
+    },
+    {
+      "route": "/auth",
+      "rewrite": "/auth/login/index.html"
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404/index.html"
+    }
+  },
+  "globalHeaders": {
+    "Cache-Control": "public, max-age=31536000, immutable"
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".woff": "font/woff",
+    ".woff2": "font/woff2"
+  }
+}

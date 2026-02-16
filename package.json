@@ -1,0 +1,39 @@
+{
+  "name": "mozedu-mwinda",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mwinda by MozEdu - Educational Platform for DR Congo schools",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.2.0",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^15.0.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "turbo": "^1.11.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
+  },
+  "packageManager": "npm@10.2.4",
+  "dependencies": {
+    "dompurify": "^3.3.0",
+    "next-intl": "^4.3.12"
+  }
+}

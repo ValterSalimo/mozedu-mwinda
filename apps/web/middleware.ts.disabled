@@ -1,0 +1,114 @@
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+// Define role-based route permissions
+// Each role can ONLY access their designated routes
+const roleRoutePermissions: Record<string, string[]> = {
+  'student': ['/student'],
+  'parent': ['/parent'],
+  'teacher': ['/teacher'],
+  'school_admin': ['/school'],
+  'ministry_official': ['/school', '/ministry'], // Ministry can view schools
+  'super_admin': ['/school', '/admin', '/ministry', '/student', '/teacher', '/parent'], // Super admin can access all
+}
+
+// Map role to their home dashboard
+const roleHomeRoutes: Record<string, string> = {
+  'student': '/student',
+  'parent': '/parent',
+  'teacher': '/teacher',
+  'school_admin': '/school',
+  'ministry_official': '/ministry',
+  'super_admin': '/admin',
+}
+
+// Routes that require authentication
+const protectedRoutes = [
+  '/student',
+  '/teacher',
+  '/parent',
+  '/school',
+]
+
+// Routes that should redirect to dashboard if authenticated
+const authRoutes = [
+  '/auth/login',
+  '/auth/register',
+]
+
+// Routes that should always be accessible (no auth check)
+const publicRoutes = [
+  '/auth/logout',
+]
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  
+  // Skip middleware for public routes (like logout)
+  const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route))
+  if (isPublicRoute) {
+    return NextResponse.next()
+  }
+  
+  // Check if user is authenticated by looking for auth cookies
+  const authToken = request.cookies.get('mozedu-authenticated')?.value
+  const userRole = request.cookies.get('mozedu-user-role')?.value?.toLowerCase()
+  
+  // Check route types
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
+  const isAuthRoute = authRoutes.some(route => pathname.startsWith(route))
+
+  // If trying to access protected route without auth, redirect to login
+  if (isProtectedRoute && !authToken) {
+    const loginUrl = new URL('/auth/login', request.url)
+    loginUrl.searchParams.set('redirect', pathname)
+    return NextResponse.redirect(loginUrl)
+  }
+
+  // If authenticated and trying to access protected route, verify role permissions
+  if (isProtectedRoute && authToken && userRole) {
+    const allowedRoutes = roleRoutePermissions[userRole] || []
+    const isAllowed = allowedRoutes.some(route => pathname.startsWith(route))
+    
+    if (!isAllowed) {
+      // User is trying to access a route they don't have permission for
+      // Redirect them to their home dashboard
+      const homeRoute = roleHomeRoutes[userRole] || '/auth/login'
+      return NextResponse.redirect(new URL(homeRoute, request.url))
+    }
+  }
+
+  // If trying to access auth routes while authenticated, redirect to appropriate dashboard
+  // Only redirect if we have both token and role to ensure we know where to send them
+  if (isAuthRoute && authToken && userRole) {
+    const redirectPath = roleHomeRoutes[userRole]
+    
+    // If role is invalid or unknown, do not redirect (avoids infinite loop)
+    if (!redirectPath) {
+      return NextResponse.next()
+    }
+    
+    // Prevent redirect loop if already on the target path
+    if (pathname === redirectPath) {
+      return NextResponse.next()
+    }
+    
+    return NextResponse.redirect(new URL(redirectPath, request.url))
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public files (images, etc.)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*|_next).*)',
+  ],
+}

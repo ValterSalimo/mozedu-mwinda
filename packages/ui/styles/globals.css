@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode - Soft Gray Background */
+    --background: 220 14% 95%;
+    /* Gray 100-ish #F3F4F6 */
+    --foreground: 222 47% 11%;
+    /* Gray 900 #111827 */
+
+    --card: 0 0% 100%;
+    /* White */
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand Colors */
+    --primary: 200 100% 50%;
+    /* Electric Blue #00A8FF */
+    --primary-foreground: 0 0% 100%;
+    /* White text on bright blue */
+
+    --secondary: 48 100% 50%;
+    /* Sunshine Yellow #FFD700 */
+    --secondary-foreground: 222 47% 11%;
+    /* Dark text on yellow */
+
+    --accent: 142 100% 30%;
+    /* Congo Green #009B3A (approx adjusted for HSL) */
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 220 14% 91%;
+    /* Gray 200 */
+    --muted-foreground: 215 16% 47%;
+    /* Gray 500 */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    /* Gray 200 */
+    --input: 214 32% 91%;
+    --ring: 200 100% 50%;
+    /* Match Primary */
+
+    --radius: 1rem;
+    /* Updated to 1rem as per prompt lg radius */
+  }
+
+  .dark {
+    /* Dark Mode - Deep Blue Gray */
+    --background: 222 47% 11%;
+    /* Gray 900 #111827 */
+    --foreground: 210 20% 98%;
+    /* Gray 50 */
+
+    --card: 217 33% 17%;
+    /* Gray 800 #1F2937 */
+    --card-foreground: 210 20% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 200 100% 50%;
+    /* Keep Electric Blue or slightly adjust luminosity */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 48 100% 50%;
+    --secondary-foreground: 222 47% 11%;
+
+    --accent: 142 100% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    /* Gray 400 */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 19% 27%;
+    /* Gray 700 */
+    --input: 215 19% 27%;
+    --ring: 200 100% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border border-white/20 dark:border-gray-700/30;
+  }
+}

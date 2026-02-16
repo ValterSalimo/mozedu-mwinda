@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useTranslations } from 'next-intl'
-import { Button } from '@Ulongo/ui'
+import { Button } from '@mozedu/ui'
 import { Mail, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react'
 import { api } from '@/lib/api'
 

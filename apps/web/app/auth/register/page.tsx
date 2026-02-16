@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { Button } from '@Ulongo/ui'
+import { Button } from '@mozedu/ui'
 import { AlertCircle } from 'lucide-react'
 
 /**

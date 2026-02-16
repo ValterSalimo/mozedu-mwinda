@@ -3,7 +3,7 @@
  * Following FRONTEND_PROMPT.md pattern with fetch wrapper
  */
 
-import type { ApiResponse, LoginResponse, RoleSelectionRequiredResponse } from '@Ulongo/types'
+import type { ApiResponse, LoginResponse, RoleSelectionRequiredResponse } from '@mozedu/types'
 import { getSafeErrorMessage } from './errors'
 import { sanitizeObject } from './sanitize'
 

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { cn } from '@Ulongo/ui'
+import { cn } from '@mozedu/ui'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import {

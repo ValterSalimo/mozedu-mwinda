@@ -1,15 +1,21 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { Bot, X, ArrowUp } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import { useUser } from '@/lib/stores'
-import { useParentChildren, useChildGrades, useChildAttendance } from '@/lib/hooks'
-import { useParentId, useCurrentEntity } from '@/lib/hooks/use-current-entity'
+import { ChatPanel } from '@/components/chatbot/chat-widget'
 
+/**
+ * Full-page chatbot view at /parent/chatbot
+ * Renders the same ChatPanel used in the floating widget, but in full-page layout.
+ */
 export default function ChatbotPage() {
-  const [messages, setMessages] = useState<Array<{ id: number; role: 'user' | 'assistant'; content: string }>>([])
-  const [input, setInput] = useState('')
+  return (
+    <div className="fixed inset-0 bg-card z-50 flex flex-col">
+      <ChatPanel
+        onClose={() => window.history.back()}
+        fullPage
+      />
+    </div>
+  )
+}
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)

@@ -760,6 +760,7 @@
       "late": "Geç",
       "studentList": "Öğrenci Listesi",
       "saveAttendance": "Yoklama Kaydet",
+      "comingSoon": "Yakında",
       "noSession": "Aktif Oturum Yok",
       "noSessionDescription": "Yoklama almaya başlamak için yeni bir oturum başlatın.",
       "startSession": "Oturum Başlat",
@@ -903,7 +904,11 @@
       "targetGrade": "Belirli sınıf seviyesi",
       "targetClassPlaceholder": "Sınıf ID",
       "targetGradePlaceholder": "Sınıf seviyesi (örn. 10)",
-      "markRead": "Okundu işaretle"
+      "markRead": "Okundu işaretle",
+      "newChat": "Yeni Sohbet",
+      "cancel": "İptal",
+      "searchRecipients": "Alıcı ara...",
+      "noRecipients": "Uygun alıcı bulunamadı"
     },
     "settings": {
       "subtitle": "Hesabınızı ve tercihlerinizi yönetin",
@@ -1120,7 +1125,11 @@
       "targetGrade": "Belirli sınıf seviyesi",
       "targetClassPlaceholder": "Sınıf ID",
       "targetGradePlaceholder": "Sınıf seviyesi (örn. 10)",
-      "markRead": "Okundu işaretle"
+      "markRead": "Okundu işaretle",
+      "newChat": "Yeni Sohbet",
+      "cancel": "İptal",
+      "searchRecipients": "Alıcı ara...",
+      "noRecipients": "Uygun alıcı bulunamadı"
     },
     "reports": {
       "title": "Raporlar ve Karneler",
@@ -1207,6 +1216,7 @@
   "parent": {
     "portal": "Veli Portalı",
     "parentPortal": "Veliler",
+    "comingSoon": "Yakında",
     "dashboardNav": "Kontrol Paneli",
     "myChildren": "Çocuklarım",
     "aiAssistant": "Yapay Zeka Asistanı",
@@ -1313,7 +1323,13 @@
       "helpFeedback": "Öğretmen geri bildirimleri",
       "helpAssignments": "Yaklaşan ödevler ve sınavlar",
       "helpBehavior": "Davranış ve uyarılar",
-      "helpQuestion": "Size nasıl yardımcı olabilirim?"
+      "helpQuestion": "Size nasıl yardımcı olabilirim?",
+      "history": "Sohbet Geçmişi",
+      "justNow": "Az önce",
+      "newChat": "Yeni Sohbet",
+      "noSessions": "Henüz önceki konuşma yok.",
+      "previousConversations": "Önceki konuşmalar",
+      "untitledChat": "Başlıksız Sohbet"
     },
     "messages": {
       "title": "Mesajlar",
@@ -1355,7 +1371,11 @@
       "targetGrade": "Belirli sınıf seviyesi",
       "targetClassPlaceholder": "Sınıf ID",
       "targetGradePlaceholder": "Sınıf seviyesi (örn. 10)",
-      "markRead": "Okundu işaretle"
+      "markRead": "Okundu işaretle",
+      "newChat": "Yeni Sohbet",
+      "cancel": "İptal",
+      "searchRecipients": "Alıcı ara...",
+      "noRecipients": "Uygun alıcı bulunamadı"
     },
     "payments": {
       "title": "Ödemeler",
@@ -1394,7 +1414,8 @@
       "pay": "Öde",
       "noPendingPayments": "Bekleyen ödeme yok.",
       "noPaymentsToExport": "Dışa aktarılacak ödeme yok",
-      "noPaymentHistory": "Ödeme geçmişi bulunamadı."
+      "noPaymentHistory": "Ödeme geçmişi bulunamadı.",
+      "comingSoon": "Yakında"
     },
     "notifications": {
       "title": "Bildirimler",
@@ -2048,6 +2069,16 @@
       "integrationBackup": "Bulut Yedekleme",
       "integrationBackupDesc": "Otomatik bulut yedekleme",
       "integrationsDescription": "Mwinda'yı diğer hizmet ve sistemlerle bağlayın",
+      "comingSoon": "Yakında",
+      "comingSoonDescription": "Bu özellik şu anda geliştirilmektedir ve gelecek bir güncellemede kullanılabilir olacaktır.",
+      "comingSoonAcademic": "Akademik takvim yönetimi, ders programı yapılandırması ve devamsızlık eşikleri yakında kullanılabilir olacak.",
+      "comingSoonCommunications": "E-posta şablonları ve iletişim kanalları geliştirilmektedir.",
+      "comingSoonNotifications": "Bildirim tercihleri ve uyarı yapılandırması yakında gelecek.",
+      "comingSoonSecurity": "Şifre politikaları, oturum yönetimi ve iki faktörlü kimlik doğrulama uygulanmaktadır.",
+      "comingSoonAppearance": "Tema özelleştirme, renk şemaları ve dil tercihleri yolda.",
+      "comingSoonIntegrations": "Ödeme sistemleri, devlet platformları ve bulut hizmetleriyle üçüncü taraf entegrasyonlar geliştirilmektedir.",
+      "resetPassword": "Şifreyi Sıfırla",
+      "deleteUser": "Kullanıcıyı Sil",
       "roleStudent": "Öğrenci",
       "roleParent": "Veli",
       "noSchoolSelected": "Okul seçilmedi",
@@ -2096,7 +2127,11 @@
       "targetGrade": "Belirli sınıf seviyesi",
       "targetClassPlaceholder": "Sınıf ID",
       "targetGradePlaceholder": "Sınıf seviyesi (örn. 10)",
-      "markRead": "Okundu işaretle"
+      "markRead": "Okundu işaretle",
+      "newChat": "Yeni Sohbet",
+      "cancel": "İptal",
+      "searchRecipients": "Alıcı ara...",
+      "noRecipients": "Uygun alıcı bulunamadı"
     },
     "schoolAdmin": "Okul Yöneticisi",
     "greeting": {

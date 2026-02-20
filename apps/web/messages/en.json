@@ -431,6 +431,7 @@
       "late": "Late",
       "studentList": "Student List",
       "saveAttendance": "Save Attendance",
+      "comingSoon": "Coming Soon",
       "noSession": "No Active Session",
       "noSessionDescription": "Start a new attendance session to begin marking attendance.",
       "startSession": "Start Session",
@@ -910,6 +911,7 @@
   "parent": {
     "portal": "Parent Portal",
     "parentPortal": "Guardian Portal",
+    "comingSoon": "Coming Soon",
     "dashboardNav": "Dashboard",
     "myChildren": "My Children",
     "aiAssistant": "AI Assistant",
@@ -1016,7 +1018,13 @@
       "helpFeedback": "Teacher feedback",
       "helpAssignments": "Upcoming assignments and exams",
       "helpBehavior": "Behavior and alerts",
-      "helpQuestion": "How can I help specifically?"
+      "helpQuestion": "How can I help specifically?",
+      "history": "Chat History",
+      "justNow": "Just now",
+      "newChat": "New Chat",
+      "noSessions": "No previous conversations yet.",
+      "previousConversations": "Previous conversations",
+      "untitledChat": "Untitled Chat"
     },
     "messages": {
       "title": "Messages",
@@ -1101,7 +1109,8 @@
       "pay": "Pay",
       "noPendingPayments": "No pending payments.",
       "noPaymentsToExport": "No payments to export",
-      "noPaymentHistory": "No payment history found."
+      "noPaymentHistory": "No payment history found.",
+      "comingSoon": "Coming Soon"
     },
     "notifications": {
       "title": "Notifications",
@@ -2015,6 +2024,16 @@
       "integrationBackup": "Backup Cloud",
       "integrationBackupDesc": "Automatic cloud backup",
       "integrationsDescription": "Connect Mwinda with other services and systems",
+      "comingSoon": "Coming Soon",
+      "comingSoonDescription": "This feature is currently under development and will be available in a future update.",
+      "comingSoonAcademic": "Academic calendar management, schedule configuration, and attendance thresholds will be available soon.",
+      "comingSoonCommunications": "Email templates and communication channels are being developed.",
+      "comingSoonNotifications": "Notification preferences and alert configuration are coming soon.",
+      "comingSoonSecurity": "Password policies, session management, and two-factor authentication are being implemented.",
+      "comingSoonAppearance": "Theme customization, color schemes, and language preferences are on the way.",
+      "comingSoonIntegrations": "Third-party integrations with payment systems, government platforms, and cloud services are being developed.",
+      "resetPassword": "Reset Password",
+      "deleteUser": "Delete User",
       "roleStudent": "Student",
       "roleParent": "Parent",
       "noSchoolSelected": "No school selected",

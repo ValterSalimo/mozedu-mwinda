@@ -25,6 +25,7 @@ import { Button, Input } from '@mozedu/ui'
 import { LanguageSwitcher } from '../../components/language-switcher'
 import { AuthGuard } from '../../components/auth-guard'
 import { TopBar } from '../../components/layout/top-bar'
+import { ChatWidget } from '../../components/chatbot/chat-widget'
 import { useUser, useAuthStore } from '@/lib/stores'
 import Image from 'next/image'
 
@@ -187,6 +188,7 @@ export default function ParentLayout({ children }: { children: React.ReactNode }
           {/* Page Content */}
           <main className="p-4 lg:p-8">{children}</main>
         </div>
+        <ChatWidget />
       </div>
     </AuthGuard>
   )

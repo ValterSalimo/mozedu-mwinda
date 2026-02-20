@@ -432,6 +432,7 @@
       "late": "Atrasado",
       "studentList": "Lista de Estudantes",
       "saveAttendance": "Guardar Presenças",
+      "comingSoon": "Em Breve",
       "noSession": "Sem Sessão Ativa",
       "noSessionDescription": "Inicie uma nova sessão de presenças para começar a marcar.",
       "startSession": "Iniciar Sessão",
@@ -579,7 +580,11 @@
       "targetGrade": "Ano específico",
       "targetClassPlaceholder": "ID da turma",
       "targetGradePlaceholder": "Ano (ex. 10)",
-      "markRead": "Marcar como lido"
+      "markRead": "Marcar como lido",
+      "newChat": "Nova Conversa",
+      "cancel": "Cancelar",
+      "searchRecipients": "Pesquisar destinatários...",
+      "noRecipients": "Nenhum destinatário elegível encontrado"
     },
     "settings": {
       "subtitle": "Gerir a sua conta e preferências",
@@ -800,7 +805,11 @@
       "targetGrade": "Ano específico",
       "targetClassPlaceholder": "ID da turma",
       "targetGradePlaceholder": "Ano (ex. 10)",
-      "markRead": "Marcar como lido"
+      "markRead": "Marcar como lido",
+      "newChat": "Nova Conversa",
+      "cancel": "Cancelar",
+      "searchRecipients": "Pesquisar destinatários...",
+      "noRecipients": "Nenhum destinatário elegível encontrado"
     },
     "reports": {
       "title": "Relatórios e Cadernetas",
@@ -887,6 +896,7 @@
   "parent": {
     "portal": "Portal do Encarregado",
     "parentPortal": "Encarregados de Educação",
+    "comingSoon": "Em Breve",
     "dashboardNav": "Painel",
     "myChildren": "Meus Filhos",
     "aiAssistant": "Assistente IA",
@@ -995,7 +1005,13 @@
       "helpFeedback": "Feedback dos professores",
       "helpAssignments": "Trabalhos e exames próximos",
       "helpBehavior": "Comportamento e alertas",
-      "helpQuestion": "Como posso ajudar especificamente?"
+      "helpQuestion": "Como posso ajudar especificamente?",
+      "history": "Histórico de Conversa",
+      "justNow": "Agora mesmo",
+      "newChat": "Nova Conversa",
+      "noSessions": "Sem conversas anteriores.",
+      "previousConversations": "Conversas anteriores",
+      "untitledChat": "Conversa sem título"
     },
     "messages": {
       "title": "Mensagens",
@@ -1037,7 +1053,11 @@
       "targetGrade": "Ano específico",
       "targetClassPlaceholder": "ID da turma",
       "targetGradePlaceholder": "Ano (ex. 10)",
-      "markRead": "Marcar como lido"
+      "markRead": "Marcar como lido",
+      "newChat": "Nova Conversa",
+      "cancel": "Cancelar",
+      "searchRecipients": "Pesquisar destinatários...",
+      "noRecipients": "Nenhum destinatário elegível encontrado"
     },
     "payments": {
       "title": "Pagamentos",
@@ -1076,7 +1096,8 @@
       "pay": "Pagar",
       "noPendingPayments": "Não há pagamentos pendentes.",
       "noPaymentsToExport": "Nenhum pagamento para exportar",
-      "noPaymentHistory": "Nenhum histórico de pagamento encontrado."
+      "noPaymentHistory": "Nenhum histórico de pagamento encontrado.",
+      "comingSoon": "Em Breve"
     },
     "notifications": {
       "title": "Notificações",
@@ -1581,6 +1602,7 @@
       }
     },
     "messagesNav": "Mensagens",
+    "scheduleNav": "Horário",
     "subjects": "Disciplinas",
     "schedule": {
       "noSchoolSelected": "Nenhuma escola selecionada",
@@ -1973,6 +1995,16 @@
       "integrationBackup": "Backup Cloud",
       "integrationBackupDesc": "Backup automático na nuvem",
       "integrationsDescription": "Conecte o Mwinda com outros serviços e sistemas",
+      "comingSoon": "Em Breve",
+      "comingSoonDescription": "Esta funcionalidade está em desenvolvimento e estará disponível numa futura atualização.",
+      "comingSoonAcademic": "Gestão do calendário académico, configuração de horários e limiares de presença estarão disponíveis em breve.",
+      "comingSoonCommunications": "Modelos de email e canais de comunicação estão a ser desenvolvidos.",
+      "comingSoonNotifications": "Preferências de notificação e configuração de alertas estão a caminho.",
+      "comingSoonSecurity": "Políticas de senha, gestão de sessões e autenticação de dois fatores estão a ser implementados.",
+      "comingSoonAppearance": "Personalização de tema, esquemas de cores e preferências de idioma estão a caminho.",
+      "comingSoonIntegrations": "Integrações de terceiros com sistemas de pagamento, plataformas governamentais e serviços cloud estão a ser desenvolvidas.",
+      "resetPassword": "Redefinir Senha",
+      "deleteUser": "Eliminar Utilizador",
       "roleStudent": "Aluno",
       "roleParent": "Encarregado",
       "noSchoolSelected": "Escola não selecionada",
@@ -2021,7 +2053,11 @@
       "targetGrade": "Ano específico",
       "targetClassPlaceholder": "ID da turma",
       "targetGradePlaceholder": "Ano (ex. 10)",
-      "markRead": "Marcar como lido"
+      "markRead": "Marcar como lido",
+      "newChat": "Nova Conversa",
+      "cancel": "Cancelar",
+      "searchRecipients": "Pesquisar destinatários...",
+      "noRecipients": "Nenhum destinatário elegível encontrado"
     },
     "schoolAdmin": "Administrador Escolar",
     "greeting": {

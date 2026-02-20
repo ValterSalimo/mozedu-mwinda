@@ -226,7 +226,7 @@ export default function ChildrenPage() {
           </div>
 
           {/* View Student Card Button */}
-          <Link href={`/parent/children/${selectedChild.id}/card`}>
+          <Link href={`/parent/children/card?childId=${selectedChild.id}`}>
             <Button variant="outline" className="w-full gap-2 mt-4 border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all">
               <CreditCard className="h-4 w-4 text-primary" />
               {t('viewStudentCard', { defaultValue: 'View Student Card' })}

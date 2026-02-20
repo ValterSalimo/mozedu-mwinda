@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Button } from '@mozedu/ui'
 import {
@@ -13,7 +13,6 @@ import {
   School,
   Calendar,
   Hash,
-  User,
   ArrowLeft,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -22,9 +21,9 @@ import { studentCardsApi } from '@/lib/api'
 import { toast } from 'sonner'
 
 export default function ChildCardPage() {
-  const params = useParams()
+  const searchParams = useSearchParams()
   const router = useRouter()
-  const childId = params.id as string
+  const childId = searchParams.get('childId') || ''
   const t = useTranslations('parent')
   const tCard = useTranslations('parent.studentCard')
   const currentYear = new Date().getFullYear().toString()
@@ -72,6 +71,19 @@ export default function ChildCardPage() {
     } catch {
       toast.error(tCard('downloadError'))
     }
+  }
+
+  if (!childId) {
+    return (
+      <div className="flex flex-col items-center justify-center h-96 gap-4">
+        <CreditCard className="h-12 w-12 text-muted-foreground" />
+        <p className="text-muted-foreground">{t('selectChild', { defaultValue: 'Please select a child first' })}</p>
+        <Button variant="outline" onClick={() => router.push('/parent/children')}>
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          {t('backToChildren', { defaultValue: 'Back to Children' })}
+        </Button>
+      </div>
+    )
   }
 
   if (cardLoading) {

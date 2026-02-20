@@ -83,6 +83,7 @@ export default function StudentsPage() {
       parentEmail: '',
       parentPhone: '',
       parentRelationship: 'GUARDIAN',
+      sendStudentCard: false,
     })
     setStep(1)
     setShowAddModal(true)

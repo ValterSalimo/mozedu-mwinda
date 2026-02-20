@@ -906,7 +906,9 @@
     "schedule": {
       "period": "Period",
       "about": "About Your Schedule"
-    }
+    },
+    "assignmentsNav": "Assignments",
+    "practicalsNav": "Practicals"
   },
   "parent": {
     "portal": "Parent Portal",

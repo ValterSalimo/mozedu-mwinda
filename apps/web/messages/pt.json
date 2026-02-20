@@ -891,7 +891,9 @@
     "schedule": {
       "period": "Período",
       "about": "Sobre o Seu Horário"
-    }
+    },
+    "assignmentsNav": "Trabalhos",
+    "practicalsNav": "Práticas"
   },
   "parent": {
     "portal": "Portal do Encarregado",

@@ -1212,7 +1212,9 @@
     "schedule": {
       "period": "Période",
       "about": "À propos de votre emploi du temps"
-    }
+    },
+    "assignmentsNav": "Devoirs",
+    "practicalsNav": "Travaux Pratiques"
   },
   "parent": {
     "portal": "Portail Parent",

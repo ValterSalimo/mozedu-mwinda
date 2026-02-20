@@ -1211,7 +1211,9 @@
     "schedule": {
       "period": "Ders",
       "about": "Ders Programınız Hakkında"
-    }
+    },
+    "assignmentsNav": "Ödevler",
+    "practicalsNav": "Uygulamalar"
   },
   "parent": {
     "portal": "Veli Portalı",

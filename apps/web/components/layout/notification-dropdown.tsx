@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Bell, Check, Trash2, Clock, Info, CheckCircle, AlertTriangle, AlertCircle } from 'lucide-react'
 import { Button } from '@mozedu/ui'
 import { useNotificationStore } from '@/lib/stores/notification-store'
@@ -10,7 +10,14 @@ import Link from 'next/link'
 export function NotificationDropdown() {
     const [isOpen, setIsOpen] = useState(false)
     const t = useTranslations('common')
-    const { notifications, unreadCount, markAsRead, markAllAsRead, removeNotification, clearAll } = useNotificationStore()
+    const { notifications, unreadCount, markAsRead, markAllAsRead, removeNotification, clearAll, fetchNotifications } = useNotificationStore()
+
+    // Fetch on mount + poll every 30s
+    useEffect(() => {
+        fetchNotifications()
+        const interval = setInterval(fetchNotifications, 30000)
+        return () => clearInterval(interval)
+    }, [fetchNotifications])
 
     const formatDistance = (date: string) => {
         const now = new Date()

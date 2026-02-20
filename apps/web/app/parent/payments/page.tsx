@@ -110,7 +110,7 @@ export default function PaymentsPage() {
                 : `${pendingPayments.length} ${t('pendingPayments')}`}
             </p>
             
-            <Button className="w-full mt-6 bg-white text-accent-600 hover:bg-gray-100 border-0">
+            <Button className="w-full mt-6 bg-white text-accent-600 hover:bg-gray-100 border-0" onClick={() => toast.info(t('comingSoon'))}>
               <Plus className="h-4 w-4 mr-2" />
               {t('payNow')}
             </Button>

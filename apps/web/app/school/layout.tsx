@@ -78,7 +78,7 @@ export default function SchoolLayout({ children }: { children: ReactNode }) {
       { key: 'activitiesNav', href: '/school/activities', icon: Music },
       { key: 'studentCardsNav', href: '/school/student-cards', icon: CreditCard },
       { key: 'messagesNav', href: '/school/messages', icon: MessageSquare },
-      { key: 'schedule', href: '/school/schedule', icon: Calendar },
+      { key: 'scheduleNav', href: '/school/schedule', icon: Calendar },
       { key: 'reportsNav', href: '/school/reports', icon: FileText },
       { key: 'analyticsNav', href: '/school/analytics', icon: BarChart3 },
       { key: 'settingsNav', href: '/school/settings', icon: Settings },

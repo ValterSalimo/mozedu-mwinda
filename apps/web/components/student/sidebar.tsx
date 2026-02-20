@@ -18,6 +18,7 @@ import {
   X,
   BookCheck,
   Beaker,
+  CreditCard,
 } from 'lucide-react'
 
 interface SidebarProps {
@@ -36,6 +37,7 @@ export function StudentSidebar({ isOpen, onClose }: SidebarProps) {
     { name: t('gradesNav'), href: '/student/grades', icon: Award },
     { name: t('assignmentsNav', { defaultValue: 'Assignments' }), href: '/student/assignments', icon: BookCheck },
     { name: t('practicalsNav', { defaultValue: 'Practicals' }), href: '/student/practicals', icon: Beaker },
+    { name: t('studentCardNav', { defaultValue: 'Student Card' }), href: '/student/card', icon: CreditCard },
     { name: t('libraryNav'), href: '/student/library', icon: BookOpen },
     { name: t('reportsNav'), href: '/student/reports', icon: FileText },
     { name: t('messagesNav'), href: '/student/messages', icon: MessageSquare },

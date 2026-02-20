@@ -362,7 +362,26 @@ export function useRenderCardHTML() {
   return useMutation({
     mutationFn: async ({ cardId, side }: { cardId: string; side: 'front' | 'back' }) => {
       const res = await studentCardsApi.renderCardHTML(cardId, side)
-      return res as unknown as string
+      // apiClient now returns text for text/html content-type
+      return typeof res === 'string' ? res : String(res)
+    },
+  })
+}
+
+// ============================================================================
+// Individual Student Card Query Hook
+// ============================================================================
+
+export function useStudentCard(studentId: string | undefined, year?: string) {
+  const currentYear = new Date().getFullYear().toString()
+  return useQuery({
+    queryKey: studentCardKeys.studentCard(studentId || '', year || currentYear),
+    queryFn: () => studentCardsApi.getStudentCard(studentId!, year || currentYear),
+    enabled: !!studentId,
+    retry: (failureCount, error: any) => {
+      // Don't retry on 404 (no card generated)
+      if (error?.status === 404) return false
+      return failureCount < 2
     },
   })
 }

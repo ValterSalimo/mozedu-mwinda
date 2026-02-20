@@ -569,6 +569,16 @@ function CardPreviewModal({
             }
           }
         },
+        onError: () => {
+          if (iframeRef.current) {
+            const doc = iframeRef.current.contentDocument
+            if (doc) {
+              doc.open()
+              doc.write('<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;font-family:sans-serif;font-size:14px;">Card preview unavailable</div>')
+              doc.close()
+            }
+          }
+        },
       }
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -621,7 +631,7 @@ function CardPreviewModal({
                 ref={iframeRef}
                 title="Card Preview"
                 className="w-full h-full border-0"
-                sandbox="allow-same-origin"
+                sandbox="allow-same-origin allow-scripts"
                 style={{ pointerEvents: 'none' }}
               />
             </div>

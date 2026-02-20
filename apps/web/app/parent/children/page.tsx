@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { Button } from '@mozedu/ui'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import {
   Users,
   Award,
@@ -17,10 +18,12 @@ import {
   Plus,
   ChevronRight,
   Loader2,
+  CreditCard,
 } from 'lucide-react'
 import { useCurrentEntity, useParentId } from '@/lib/hooks/use-current-entity'
 import { useParentChildren, useChildGrades, useChildAttendance, getChildStatus } from '@/lib/hooks/use-parent'
 import { useUser } from '@/lib/stores'
+import Link from 'next/link'
 
 export default function ChildrenPage() {
   const t = useTranslations('parent')
@@ -129,7 +132,7 @@ export default function ChildrenPage() {
           <h1 className="text-3xl font-bold text-gray-900">{t('childrenNav')}</h1>
           <p className="text-sm text-muted-foreground mt-1">{t('trackPerformance')}</p>
         </div>
-        <Button className="bg-accent-500 hover:bg-accent-600">
+        <Button className="bg-accent-500 hover:bg-accent-600" onClick={() => toast.info(t('comingSoon'))}>
           <Plus className="h-4 w-4 mr-2" />
           {t('addStudent')}
         </Button>
@@ -221,6 +224,14 @@ export default function ChildrenPage() {
               </div>
             </div>
           </div>
+
+          {/* View Student Card Button */}
+          <Link href={`/parent/children/${selectedChild.id}/card`}>
+            <Button variant="outline" className="w-full gap-2 mt-4 border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all">
+              <CreditCard className="h-4 w-4 text-primary" />
+              {t('viewStudentCard', { defaultValue: 'View Student Card' })}
+            </Button>
+          </Link>
 
           {/* Quick Stats */}
           <div className="bg-card rounded-xl p-6 shadow-sm">

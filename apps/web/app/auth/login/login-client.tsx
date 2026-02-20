@@ -132,18 +132,7 @@ export default function LoginClient() {
               {errors.password && <p className="mt-1 text-sm text-destructive">{errors.password.message}</p>}
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-primary focus:ring-primary border-input rounded bg-background"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-foreground">
-                  {t('rememberMe')}
-                </label>
-              </div>
+            <div className="flex items-center justify-end">
               <Link href="/auth/forgot-password" className="text-sm text-primary hover:text-primary/80">
                 {t('forgotPassword')}
               </Link>

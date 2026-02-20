@@ -1213,7 +1213,23 @@
       "about": "Ders Programınız Hakkında"
     },
     "assignmentsNav": "Ödevler",
-    "practicalsNav": "Uygulamalar"
+    "practicalsNav": "Uygulamalar",
+    "studentCardNav": "Öğrenci Kartı",
+    "card": {
+      "title": "Öğrenci Kartı",
+      "subtitle": "Öğrenci kimlik kartınızı görüntüleyin ve indirin",
+      "downloadPDF": "PDF İndir",
+      "showFront": "Önü Göster",
+      "showBack": "Arkayı Göster",
+      "cardNumber": "Kart Numarası",
+      "status": "Durum",
+      "active": "Aktif",
+      "issuedDate": "Veriliş Tarihi",
+      "expiryDate": "Son Kullanma Tarihi",
+      "classicCardMessage": "Okulunuz henüz özel bir öğrenci kartı oluşturmadı. Bu varsayılan karttır.",
+      "downloadSuccess": "Kart başarıyla indirildi!",
+      "downloadError": "Kart indirilemedi"
+    }
   },
   "parent": {
     "portal": "Veli Portalı",
@@ -1241,6 +1257,7 @@
     "upcomingEvents": "Yaklaşan Etkinlikler",
     "quickActions": "Hızlı İşlemler",
     "viewFullReport": "Tam Raporu Görüntüle",
+    "viewStudentCard": "Öğrenci Kartını Gör",
     "contactTeacher": "Öğretmenle İletişim",
     "makePayment": "Ödeme Yap",
     "gradesBySubject": "Dersler Bazında Notlar",
@@ -1535,6 +1552,19 @@
       "noRecentGrades": "Son not yok.",
       "feedbackComingSoon": "Geri bildirim özelliği yakında.",
       "eventsComingSoon": "Etkinlik özelliği yakında."
+    },
+    "studentCard": {
+      "title": "Öğrenci Kartı",
+      "student": "Öğrenci",
+      "downloadPDF": "PDF İndir",
+      "showFront": "Önü Göster",
+      "showBack": "Arkayı Göster",
+      "cardNumber": "Kart Numarası",
+      "status": "Durum",
+      "active": "Aktif",
+      "classicCardMessage": "Okulunuz henüz özel bir öğrenci kartı oluşturmadı. Bu varsayılan karttır.",
+      "downloadSuccess": "Kart başarıyla indirildi!",
+      "downloadError": "Kart indirilemedi"
     }
   },
   "school": {

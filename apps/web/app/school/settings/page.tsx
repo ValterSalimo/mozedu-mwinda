@@ -19,20 +19,18 @@ import {
   Phone,
   MapPin,
   Calendar,
-  Clock,
   Save,
   Upload,
-  Key,
-  Trash2,
   Plus,
   ChevronRight,
   User,
-  Lock,
+  Key,
+  Trash2,
+  Construction,
 } from 'lucide-react';
 import { useCurrentEntity } from '@/lib/hooks/use-current-entity';
 import { GradeSystemSettings } from '@/components/settings/grade-system-settings';
 import { CountryCurriculumSettings } from '@/components/settings/country-curriculum-settings';
-import { EmailTemplateManager } from '@/components/settings/email-template-manager';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -51,27 +49,6 @@ const getRoleLabel = (role: string, t: any) => {
 };
 
 
-const notificationSettingsConfig = [
-  { id: 'email_attendance', labelKey: 'settings.attendanceAlerts', descKey: 'settings.attendanceAlertsDesc', enabled: true },
-  { id: 'email_grades', labelKey: 'settings.gradesPublished', descKey: 'settings.gradesPublishedDesc', enabled: true },
-  { id: 'email_events', labelKey: 'settings.schoolEvents', descKey: 'settings.schoolEventsDesc', enabled: false },
-  { id: 'sms_urgent', labelKey: 'settings.urgentSms', descKey: 'settings.urgentSmsDesc', enabled: true },
-  { id: 'push_messages', labelKey: 'settings.pushNotifications', descKey: 'settings.pushNotificationsDesc', enabled: true },
-  { id: 'weekly_report', labelKey: 'settings.weeklyReport', descKey: 'settings.weeklyReportDesc', enabled: false },
-];
-
-const academicSettings = {
-  currentYear: '2024',
-  semester: '1º Semestre',
-  classStartTime: '07:00',
-  classEndTime: '17:00',
-  classDuration: 45,
-  breakDuration: 15,
-  gradingScale: '0-20',
-  passingGrade: 10,
-  attendanceThreshold: 75,
-};
-
 const settingsSectionsConfig = [
   { id: 'profile', labelKey: 'settings.profileSection', icon: Building2 },
   { id: 'country', labelKey: 'settings.countrySection', icon: Globe },
@@ -89,7 +66,6 @@ export default function SettingsPage() {
   const { schoolId, currentSchool } = useCurrentEntity();
   const t = useTranslations('school');
   const [activeSection, setActiveSection] = useState('profile');
-  const [notifications, setNotifications] = useState(notificationSettingsConfig);
   const [showAddUser, setShowAddUser] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
 
@@ -161,13 +137,6 @@ export default function SettingsPage() {
       toast.error(error.message || t('settings.userAddError'));
     }
   });
-
-  const toggleNotification = (id: string) => {
-    setNotifications(prev =>
-      prev.map(n => (n.id === id ? { ...n, enabled: !n.enabled } : n))
-    );
-    setUnsavedChanges(true);
-  };
 
   const renderProfileSettings = () => (
     <div className="space-y-6">
@@ -346,10 +315,18 @@ export default function SettingsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                      <button
+                        className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        onClick={() => toast.info(t('settings.comingSoon'))}
+                        title={t('settings.resetPassword')}
+                      >
                         <Key className="w-4 h-4 text-gray-500" />
                       </button>
-                      <button className="p-1.5 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors">
+                      <button
+                        className="p-1.5 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+                        onClick={() => toast.info(t('settings.comingSoon'))}
+                        title={t('settings.deleteUser')}
+                      >
                         <Trash2 className="w-4 h-4 text-red-500" />
                       </button>
                     </div>
@@ -450,305 +427,6 @@ export default function SettingsPage() {
   );
 
 
-  const renderAcademicSettings = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-muted/50 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Calendar className="w-4 h-4" />
-            {t('settings.academicYear')}
-          </h4>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm text-foreground mb-1">
-                {t('settings.currentYear')}
-              </label>
-              <select className="w-full h-10 px-3 rounded-md border border-input bg-card text-foreground">
-                <option>2023</option>
-                <option selected>2024</option>
-                <option>2025</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm text-foreground mb-1">
-                {t('settings.semesterTrimester')}
-              </label>
-              <select className="w-full h-10 px-3 rounded-md border border-input bg-card text-foreground">
-                <option selected>{t('settings.firstSemester')}</option>
-                <option>{t('settings.secondSemester')}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-muted/50 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            {t('settings.operatingHours')}
-          </h4>
-          <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm text-foreground mb-1">
-                  {t('settings.startTime')}
-                </label>
-                <Input type="time" defaultValue={academicSettings.classStartTime} />
-              </div>
-              <div>
-                <label className="block text-sm text-foreground mb-1">
-                  {t('settings.endTime')}
-                </label>
-                <Input type="time" defaultValue={academicSettings.classEndTime} />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm text-foreground mb-1">
-                  {t('settings.classDuration')}
-                </label>
-                <Input type="number" defaultValue={academicSettings.classDuration} />
-              </div>
-              <div>
-                <label className="block text-sm text-foreground mb-1">
-                  {t('settings.breakDuration')}
-                </label>
-                <Input type="number" defaultValue={academicSettings.breakDuration} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-muted/50 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Settings className="w-4 h-4" />
-            {t('settings.gradingSystem')}
-          </h4>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm text-foreground mb-1">
-                {t('settings.gradeScale')}
-              </label>
-              <select className="w-full h-10 px-3 rounded-md border border-input bg-card text-foreground">
-                <option selected>0-20</option>
-                <option>0-100</option>
-                <option>A-F</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm text-foreground mb-1">
-                {t('settings.minPassingGrade')}
-              </label>
-              <Input type="number" defaultValue={academicSettings.passingGrade} />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-muted/50 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Users className="w-4 h-4" />
-            {t('settings.attendance')}
-          </h4>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm text-foreground mb-1">
-                {t('settings.minAttendanceThreshold')}
-              </label>
-              <Input type="number" defaultValue={academicSettings.attendanceThreshold} />
-              <p className="text-xs text-gray-500 mt-1">
-                {t('settings.attendanceHint')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderNotificationSettings = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-500 mb-4">
-        {t('settings.notificationsDescription')}
-      </p>
-      {notifications.map((notification) => (
-        <div
-          key={notification.id}
-          className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg"
-        >
-          <div>
-            <p className="font-medium text-gray-900 dark:text-white">
-              {t(notification.labelKey)}
-            </p>
-            <p className="text-sm text-gray-500">{t(notification.descKey)}</p>
-          </div>
-          <button
-            onClick={() => toggleNotification(notification.id)}
-            className={`relative w-12 h-6 rounded-full transition-colors ${notification.enabled
-              ? 'bg-emerald-500'
-              : 'bg-gray-300 dark:bg-gray-600'
-              }`}
-          >
-            <span
-              className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${notification.enabled ? 'left-7' : 'left-1'
-                }`}
-            />
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderSecuritySettings = () => (
-    <div className="space-y-6">
-      <div className="bg-muted/50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <Lock className="w-4 h-4" />
-          {t('settings.passwordPolicies')}
-        </h4>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.minLength')}</span>
-            <Input type="number" defaultValue={8} className="w-20" />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.requireSpecialChars')}</span>
-            <input type="checkbox" defaultChecked className="w-4 h-4 text-emerald-600 rounded" />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.requireNumbers')}</span>
-            <input type="checkbox" defaultChecked className="w-4 h-4 text-emerald-600 rounded" />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.requireMixedCase')}</span>
-            <input type="checkbox" defaultChecked className="w-4 h-4 text-emerald-600 rounded" />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-muted/50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <Shield className="w-4 h-4" />
-          {t('settings.sessionsAccess')}
-        </h4>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.sessionTimeout')}</span>
-            <Input type="number" defaultValue={30} className="w-20" />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.twoFactorAuth')}</span>
-            <input type="checkbox" className="w-4 h-4 text-emerald-600 rounded" />
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">{t('settings.lockAfterFailedAttempts')}</span>
-            <Input type="number" defaultValue={5} className="w-20" />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-        <h4 className="font-medium text-yellow-800 dark:text-yellow-200 mb-2">
-          {t('settings.dangerZone')}
-        </h4>
-        <p className="text-sm text-yellow-700 dark:text-yellow-300 mb-3">
-          {t('settings.dangerZoneWarning')}
-        </p>
-        <div className="flex gap-3">
-          <Button variant="outline" className="text-red-600 border-red-300 hover:bg-red-50">
-            {t('settings.resetAllPasswords')}
-          </Button>
-          <Button variant="outline" className="text-red-600 border-red-300 hover:bg-red-50">
-            {t('settings.terminateAllSessions')}
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderAppearanceSettings = () => (
-    <div className="space-y-6">
-      <div className="bg-muted/50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 dark:text-white mb-4">
-          {t('settings.interfaceTheme')}
-        </h4>
-        <div className="grid grid-cols-3 gap-4">
-          <button className="p-4 border-2 border-emerald-500 rounded-lg text-center">
-            <div className="w-full h-12 bg-white border rounded mb-2"></div>
-            <span className="text-sm">{t('settings.themeLight')}</span>
-          </button>
-          <button className="p-4 border-2 border-gray-300 rounded-lg text-center">
-            <div className="w-full h-12 bg-gray-800 rounded mb-2"></div>
-            <span className="text-sm">{t('settings.themeDark')}</span>
-          </button>
-          <button className="p-4 border-2 border-gray-300 rounded-lg text-center">
-            <div className="w-full h-12 bg-gradient-to-r from-white to-gray-800 rounded mb-2"></div>
-            <span className="text-sm">{t('settings.themeAuto')}</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="bg-muted/50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 dark:text-white mb-4">
-          {t('settings.primaryColor')}
-        </h4>
-        <div className="flex gap-3">
-          <button className="w-10 h-10 bg-emerald-500 rounded-full ring-2 ring-offset-2 ring-emerald-500"></button>
-          <button className="w-10 h-10 bg-blue-500 rounded-full"></button>
-          <button className="w-10 h-10 bg-purple-500 rounded-full"></button>
-          <button className="w-10 h-10 bg-orange-500 rounded-full"></button>
-          <button className="w-10 h-10 bg-red-500 rounded-full"></button>
-        </div>
-      </div>
-
-      <div className="bg-muted/50 rounded-lg p-4">
-        <h4 className="font-medium text-gray-900 dark:text-white mb-4">
-          {t('settings.language')}
-        </h4>
-        <select className="w-full max-w-xs h-10 px-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
-          <option selected>{t('settings.portugueseMoz')}</option>
-          <option>{t('settings.portuguesePt')}</option>
-          <option>{t('settings.english')}</option>
-        </select>
-      </div>
-    </div>
-  );
-
-  const renderIntegrationsSettings = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-500 mb-4">
-        {t('settings.integrationsDescription')}
-      </p>
-
-      {[
-        { name: t('settings.integrationSige'), description: t('settings.integrationSigeDesc'), connected: true, icon: '🏛️' },
-        { name: t('settings.integrationMpesa'), description: t('settings.integrationMpesaDesc'), connected: false, icon: '💳' },
-        { name: t('settings.integrationGoogle'), description: t('settings.integrationGoogleDesc'), connected: true, icon: '📧' },
-        { name: t('settings.integrationSms'), description: t('settings.integrationSmsDesc'), connected: true, icon: '📱' },
-        { name: t('settings.integrationBackup'), description: t('settings.integrationBackupDesc'), connected: false, icon: '☁️' },
-      ].map((integration) => (
-        <div
-          key={integration.name}
-          className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{integration.icon}</span>
-            <div>
-              <p className="font-medium text-gray-900 dark:text-white">
-                {integration.name}
-              </p>
-              <p className="text-sm text-gray-500">{integration.description}</p>
-            </div>
-          </div>
-          <Button
-            variant={integration.connected ? 'outline' : 'primary'}
-            size="sm"
-          >
-            {integration.connected ? t('settings.configure') : t('settings.connect')}
-          </Button>
-        </div>
-      ))}
-    </div>
-  );
-
   const renderGradingSettings = () => {
     if (!currentSchool?.id) {
       return (
@@ -761,6 +439,32 @@ export default function SettingsPage() {
     return <GradeSystemSettings schoolId={currentSchool.id} />;
   };
 
+  const comingSoonDescriptions: Record<string, string> = {
+    academic: 'settings.comingSoonAcademic',
+    communications: 'settings.comingSoonCommunications',
+    notifications: 'settings.comingSoonNotifications',
+    security: 'settings.comingSoonSecurity',
+    appearance: 'settings.comingSoonAppearance',
+    integrations: 'settings.comingSoonIntegrations',
+  };
+
+  const renderComingSoon = (section: string) => (
+    <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
+      <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mb-6">
+        <Construction className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+      </div>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+        {t('settings.comingSoon')}
+      </h3>
+      <p className="text-gray-500 dark:text-gray-400 max-w-md mb-2">
+        {t('settings.comingSoonDescription')}
+      </p>
+      <p className="text-sm text-gray-400 dark:text-gray-500 max-w-md">
+        {t(comingSoonDescriptions[section] || 'settings.comingSoonDescription')}
+      </p>
+    </div>
+  );
+
   const renderContent = () => {
     switch (activeSection) {
       case 'profile':
@@ -769,20 +473,15 @@ export default function SettingsPage() {
         return <CountryCurriculumSettings schoolId={currentSchool?.id || ''} />;
       case 'users':
         return renderUsersSettings();
-      case 'academic':
-        return renderAcademicSettings();
       case 'grading':
         return renderGradingSettings();
+      case 'academic':
       case 'communications':
-        return <EmailTemplateManager schoolId={currentSchool?.id || ''} />;
       case 'notifications':
-        return renderNotificationSettings();
       case 'security':
-        return renderSecuritySettings();
       case 'appearance':
-        return renderAppearanceSettings();
       case 'integrations':
-        return renderIntegrationsSettings();
+        return renderComingSoon(activeSection);
       default:
         return renderProfileSettings();
     }

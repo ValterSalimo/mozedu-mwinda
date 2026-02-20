@@ -65,11 +65,11 @@ export default function TeachersPage() {
 
   // Filter teachers
   const filteredTeachers = teachersList.filter((teacher: any) => {
-    const fullName = `${teacher.user.firstName} ${teacher.user.lastName}`
+    const fullName = `${teacher.user?.firstName || ''} ${teacher.user?.lastName || ''}`
     const matchesSearch =
       fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.teacherNumber.toLowerCase().includes(searchTerm.toLowerCase())
+      (teacher.user?.email || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (teacher.teacherNumber || '').toLowerCase().includes(searchTerm.toLowerCase())
 
     const matchesStatus =
       selectedStatus === 'all' ||
@@ -497,7 +497,7 @@ export default function TeachersPage() {
                 <div className="mt-4 grid grid-cols-2 gap-2 text-center">
                   <div className="p-2 rounded-lg bg-muted/50">
                     <p className="text-lg font-bold text-foreground">{teacher.classes?.length || 0}</p>
-                    <p className="text-xs text-muted-foreground">{t('classesNav')}</p>
+                    <p className="text-xs text-muted-foreground">{t('classes')}</p>
                   </div>
                   <div className="p-2 rounded-lg bg-muted/50">
                     <p className="text-lg font-bold text-foreground flex items-center justify-center gap-1">

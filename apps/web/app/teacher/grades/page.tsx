@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { Button } from '@mozedu/ui'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import { Loader2, Award, TrendingUp, Users, BookOpen, Search, Filter } from 'lucide-react'
 import { useTeacherClasses, useTeacherId, useCurrentEntity } from '@/lib/hooks'
 import { useQuery } from '@tanstack/react-query'
@@ -188,7 +189,7 @@ export default function GradesPage() {
             className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card text-foreground"
           />
         </div>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button variant="outline" className="flex items-center gap-2" onClick={() => toast.info(t('grades.filter'))}>
           <Filter className="h-4 w-4" />
           {t('grades.filter')}
         </Button>
@@ -211,7 +212,7 @@ export default function GradesPage() {
             <Award className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
             <h3 className="text-lg font-medium text-foreground mb-2">{t('grades.noGradesYet')}</h3>
             <p className="text-muted-foreground mb-4">{t('grades.noGradesDescription')}</p>
-            <Button>{t('grades.addGrades')}</Button>
+            <Button onClick={() => toast.info('Coming Soon')}>{t('grades.addGrades')}</Button>
           </div>
         )}
       </div>

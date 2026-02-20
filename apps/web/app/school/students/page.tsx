@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { useStudents, useStudent, useCreateStudent, useDeleteStudent, useUpdateStudent } from '@/lib/hooks/use-students'
 import { useCurrentEntity } from '@/lib/hooks/use-current-entity'
+import { useGenerateCardForStudent, useEmailCardToParent } from '@/lib/hooks/use-student-cards'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 
@@ -31,6 +32,8 @@ export default function StudentsPage() {
   const createStudentMutation = useCreateStudent()
   const updateStudentMutation = useUpdateStudent()
   const deleteStudentMutation = useDeleteStudent()
+  const generateCardMutation = useGenerateCardForStudent()
+  const emailCardMutation = useEmailCardToParent()
   const t = useTranslations('school.studentsPage')
   const tCommon = useTranslations('common')
   const [selectedStudent, setSelectedStudent] = useState<any | null>(null)
@@ -59,6 +62,7 @@ export default function StudentsPage() {
     parentEmail: '',
     parentPhone: '',
     parentRelationship: 'GUARDIAN',
+    sendStudentCard: false,
   })
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -153,7 +157,7 @@ export default function StudentsPage() {
         })
         toast.success(t('updateSuccess'))
       } else {
-        await createStudentMutation.mutateAsync({
+        const newStudent = await createStudentMutation.mutateAsync({
           school_id: schoolId,
           first_name: formData.firstName,
           last_name: formData.lastName,
@@ -169,6 +173,23 @@ export default function StudentsPage() {
           parent_relationship: formData.parentRelationship as any,
         })
         toast.success(t('createSuccess'))
+
+        // Generate and email student card if option was checked
+        if (formData.sendStudentCard && newStudent?.id) {
+          try {
+            const academicYear = new Date().getFullYear().toString()
+            const generatedCard = await generateCardMutation.mutateAsync({
+              studentId: newStudent.id,
+              academicYear,
+            })
+            if (generatedCard?.id) {
+              await emailCardMutation.mutateAsync(generatedCard.id)
+              toast.success(t('cardSentSuccess', { defaultValue: 'Student card has been sent!' }))
+            }
+          } catch {
+            toast.error(t('cardSendFailed', { defaultValue: 'Student created but card could not be sent.' }))
+          }
+        }
       }
       closeModal()
     } catch (error: any) {
@@ -184,7 +205,8 @@ export default function StudentsPage() {
     setFormData({
       firstName: '', lastName: '', email: '', gradeLevel: '',
       dateOfBirth: '', gender: 'Male',
-      parentFirstName: '', parentLastName: '', parentEmail: '', parentPhone: '', parentRelationship: 'GUARDIAN'
+      parentFirstName: '', parentLastName: '', parentEmail: '', parentPhone: '', parentRelationship: 'GUARDIAN',
+      sendStudentCard: false,
     })
   }
 
@@ -690,6 +712,26 @@ export default function StudentsPage() {
                         <option value="GUARDIAN">{t('guardian')}</option>
                       </select>
                     </div>
+                  </div>
+
+                  {/* Send Student Card Option */}
+                  <div className="pt-3 border-t border-border">
+                    <label className="flex items-center gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={formData.sendStudentCard}
+                        onChange={(e) => setFormData({ ...formData, sendStudentCard: e.target.checked })}
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <div>
+                        <span className="text-sm font-medium group-hover:text-primary transition-colors">
+                          {t('sendStudentCard', { defaultValue: 'Send Student ID Card' })}
+                        </span>
+                        <p className="text-xs text-muted-foreground">
+                          {t('sendStudentCardDesc', { defaultValue: 'Generate and email the student ID card along with the welcome credentials.' })}
+                        </p>
+                      </div>
+                    </label>
                   </div>
                 </div>
               )}

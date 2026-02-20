@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Button } from '@mozedu/ui'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import { Loader2, Calendar, Users, CheckCircle, XCircle, Clock, Save } from 'lucide-react'
 import { useTeacherClasses, useTeacherId, useCurrentEntity, useScheduledSessionsByTeacher } from '@/lib/hooks'
 import { gql } from '@/lib/api'
@@ -148,7 +149,7 @@ export default function AttendancePage() {
         <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-foreground">{t('attendance.studentList')}</h2>
-            <Button className="flex items-center gap-2">
+            <Button className="flex items-center gap-2" onClick={() => toast.info(t('attendance.comingSoon'))}>
               <Save className="h-4 w-4" />
               {t('attendance.saveAttendance')}
             </Button>
@@ -164,7 +165,7 @@ export default function AttendancePage() {
             <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
             <h3 className="text-lg font-medium text-foreground mb-2">{t('attendance.noSession')}</h3>
             <p className="text-muted-foreground mb-4">{t('attendance.noSessionDescription')}</p>
-            <Button>{t('attendance.startSession')}</Button>
+            <Button onClick={() => toast.info(t('attendance.comingSoon'))}>{t('attendance.startSession')}</Button>
           </div>
         )}
       </div>
@@ -223,7 +224,7 @@ export default function AttendancePage() {
                           {t('attendance.missed')}
                         </span>
                       ) : isUpcoming ? (
-                        <Button size="sm" variant="outline">
+                        <Button size="sm" variant="outline" onClick={() => toast.info('Coming Soon')}>
                           {t('attendance.startSession')}
                         </Button>
                       ) : (

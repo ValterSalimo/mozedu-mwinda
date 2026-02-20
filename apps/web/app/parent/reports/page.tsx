@@ -21,6 +21,7 @@ import {
 import { useParentChildren, useChildGrades } from '@/lib/hooks/use-parent'
 import { useParentId, useCurrentEntity } from '@/lib/hooks/use-current-entity'
 import { useUser } from '@/lib/stores'
+import { toast } from 'sonner'
 
 export default function ReportsPage() {
   const t = useTranslations('parent.reports')
@@ -236,19 +237,19 @@ export default function ReportsPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <Button variant="outline" className="border-blue-300 hover:bg-blue-50">
+              <Button variant="outline" className="border-blue-300 hover:bg-blue-50" onClick={() => toast.info('Coming Soon')}>
                 <PieChart className="h-4 w-4 mr-2" />
                 {t('bySubject')}
               </Button>
-              <Button variant="outline" className="border-purple-300 hover:bg-purple-50">
+              <Button variant="outline" className="border-purple-300 hover:bg-purple-50" onClick={() => toast.info('Coming Soon')}>
                 <Calendar className="h-4 w-4 mr-2" />
                 {t('byPeriod')}
               </Button>
-              <Button variant="outline" className="border-green-300 hover:bg-green-50">
+              <Button variant="outline" className="border-green-300 hover:bg-green-50" onClick={() => toast.info('Coming Soon')}>
                 <TrendingUp className="h-4 w-4 mr-2" />
                 {t('comparative')}
               </Button>
-              <Button variant="outline" className="border-orange-300 hover:bg-orange-50">
+              <Button variant="outline" className="border-orange-300 hover:bg-orange-50" onClick={() => toast.info('Coming Soon')}>
                 <BookOpen className="h-4 w-4 mr-2" />
                 {t('complete')}
               </Button>

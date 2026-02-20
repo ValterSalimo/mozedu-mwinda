@@ -68,7 +68,7 @@ export async function graphqlClient<T = unknown>(
     const match = document.cookie.match(/csrf_token=([^;]+)/)
     if (match) {
       // HeadersInit can be Record<string, string>, but typescript needs casting or specific type handling
-      (headers as Record<string, string>)['X-CSRF-Token'] = match[1]
+      (headers as Record<string, string>)['X-CSRF-Token'] = decodeURIComponent(match[1])
     }
   }
 

@@ -97,13 +97,14 @@ function setCookie(name: string, value: string, days: number = 7): void {
   if (typeof document === 'undefined') return
   const expires = new Date()
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000)
-  // Add SameSite=Lax to ensure cookies are sent with navigation requests
-  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`
+  const secure = window.location.protocol === 'https:' ? ';Secure' : ''
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax${secure}`
 }
 
 function deleteCookie(name: string): void {
   if (typeof document === 'undefined') return
-  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`
+  const secure = window.location.protocol === 'https:' ? ';Secure' : ''
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax${secure}`
 }
 
 // Helper to map backend user to AuthUser

@@ -908,7 +908,23 @@
       "about": "About Your Schedule"
     },
     "assignmentsNav": "Assignments",
-    "practicalsNav": "Practicals"
+    "practicalsNav": "Practicals",
+    "studentCardNav": "Student Card",
+    "card": {
+      "title": "Student Card",
+      "subtitle": "View and download your student ID card",
+      "downloadPDF": "Download PDF",
+      "showFront": "Show Front",
+      "showBack": "Show Back",
+      "cardNumber": "Card Number",
+      "status": "Status",
+      "active": "Active",
+      "issuedDate": "Issued Date",
+      "expiryDate": "Expiry Date",
+      "classicCardMessage": "Your school has not yet generated a custom student card. This is the default card.",
+      "downloadSuccess": "Card downloaded successfully!",
+      "downloadError": "Failed to download card"
+    }
   },
   "parent": {
     "portal": "Parent Portal",
@@ -936,6 +952,7 @@
     "upcomingEvents": "Upcoming Events",
     "quickActions": "Quick Actions",
     "viewFullReport": "View Full Report",
+    "viewStudentCard": "View Student Card",
     "contactTeacher": "Contact Teacher",
     "makePayment": "Make Payment",
     "gradesBySubject": "Grades by Subject",
@@ -1230,6 +1247,19 @@
       "noRecentGrades": "No recent grades.",
       "feedbackComingSoon": "Feedback feature coming soon.",
       "eventsComingSoon": "Events feature coming soon."
+    },
+    "studentCard": {
+      "title": "Student Card",
+      "student": "Student",
+      "downloadPDF": "Download PDF",
+      "showFront": "Show Front",
+      "showBack": "Show Back",
+      "cardNumber": "Card Number",
+      "status": "Status",
+      "active": "Active",
+      "classicCardMessage": "Your school has not yet generated a custom student card. This is the default card.",
+      "downloadSuccess": "Card downloaded successfully!",
+      "downloadError": "Failed to download card"
     }
   },
   "school": {

@@ -201,11 +201,11 @@ export default function ClassesPage() {
                 </div>
 
                 <div className="mt-6 flex gap-2">
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1" onClick={() => toast.info(t('comingSoon'))}>
                     <Eye className="h-4 w-4 mr-2" />
                     {t('classes.viewDetails')}
                   </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground" onClick={() => toast.info(t('comingSoon'))}>
                     <Edit className="h-4 w-4" />
                   </Button>
                   <Button

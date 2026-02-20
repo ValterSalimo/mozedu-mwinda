@@ -1214,7 +1214,23 @@
       "about": "À propos de votre emploi du temps"
     },
     "assignmentsNav": "Devoirs",
-    "practicalsNav": "Travaux Pratiques"
+    "practicalsNav": "Travaux Pratiques",
+    "studentCardNav": "Carte d'Étudiant",
+    "card": {
+      "title": "Carte d'Étudiant",
+      "subtitle": "Consultez et téléchargez votre carte d'étudiant",
+      "downloadPDF": "Télécharger PDF",
+      "showFront": "Montrer le Recto",
+      "showBack": "Montrer le Verso",
+      "cardNumber": "Numéro de Carte",
+      "status": "Statut",
+      "active": "Actif",
+      "issuedDate": "Date d'Émission",
+      "expiryDate": "Date d'Expiration",
+      "classicCardMessage": "Votre école n'a pas encore généré de carte personnalisée. Ceci est la carte par défaut.",
+      "downloadSuccess": "Carte téléchargée avec succès!",
+      "downloadError": "Échec du téléchargement de la carte"
+    }
   },
   "parent": {
     "portal": "Portail Parent",
@@ -1242,6 +1258,7 @@
     "upcomingEvents": "Événements à Venir",
     "quickActions": "Actions Rapides",
     "viewFullReport": "Voir le Rapport Complet",
+    "viewStudentCard": "Voir la Carte d'Étudiant",
     "contactTeacher": "Contacter l'Enseignant",
     "makePayment": "Effectuer un Paiement",
     "gradesBySubject": "Notes par Matière",
@@ -1536,6 +1553,19 @@
       "noRecentGrades": "Aucune note récente.",
       "feedbackComingSoon": "Fonctionnalité de retour d'information bientôt disponible.",
       "eventsComingSoon": "Fonctionnalité d'événements bientôt disponible."
+    },
+    "studentCard": {
+      "title": "Carte d'Étudiant",
+      "student": "Étudiant",
+      "downloadPDF": "Télécharger PDF",
+      "showFront": "Montrer le Recto",
+      "showBack": "Montrer le Verso",
+      "cardNumber": "Numéro de Carte",
+      "status": "Statut",
+      "active": "Actif",
+      "classicCardMessage": "Votre école n'a pas encore généré de carte personnalisée. Ceci est la carte par défaut.",
+      "downloadSuccess": "Carte téléchargée avec succès!",
+      "downloadError": "Échec du téléchargement de la carte"
     }
   },
   "school": {

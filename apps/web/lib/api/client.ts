@@ -55,6 +55,10 @@ export function getAccessToken(): string | null {
   return accessToken
 }
 
+export function getTokenExpiresAt(): number | null {
+  return tokenExpiresAt
+}
+
 export function clearTokens(): void {
   accessToken = null
   tokenExpiresAt = null
@@ -74,7 +78,7 @@ function onTokenRefreshed(newToken: string): void {
   refreshSubscribers = []
 }
 
-async function getFreshAccessToken(): Promise<string> {
+export async function getFreshAccessToken(): Promise<string> {
   if (!isRefreshing) {
     isRefreshing = true
     try {
@@ -150,7 +154,7 @@ export async function apiClient<T = unknown>(
     const method = (options.method || 'GET').toUpperCase()
     if (csrfHeaderMethods.includes(method)) {
       const match = document.cookie.match(/csrf_token=([^;]+)/)
-      if (match) headers['X-CSRF-Token'] = match[1]
+      if (match) headers['X-CSRF-Token'] = decodeURIComponent(match[1])
     }
   }
 
@@ -223,6 +227,12 @@ export async function apiClient<T = unknown>(
   // Handle 204 No Content
   if (response.status === 204) {
     return {} as T
+  }
+
+  // Handle text/html responses (e.g. rendered student card HTML)
+  const contentType = response.headers.get('content-type') || ''
+  if (contentType.includes('text/html')) {
+    return response.text() as Promise<T>
   }
 
   return response.json()
@@ -351,8 +361,8 @@ function setCsrfCookie(token?: string) {
 
     // Set cookie valid for session
     // SameSite=Lax allows it to be sent on top-level navigations, but for XHR/Fetch to subdomain it's fine if Secure
-    // Note: We use priority to ensure this one takes precedence if duplicates exist
-    document.cookie = `csrf_token=${token}; path=/; SameSite=Lax; Secure${domainAttr}`
+    // URL-encode to prevent duplicate cookies with different encodings
+    document.cookie = `csrf_token=${encodeURIComponent(token)}; path=/; SameSite=Lax; Secure${domainAttr}`
   }
 }
 

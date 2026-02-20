@@ -4,6 +4,7 @@ import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react
 import { useState } from 'react'
 import { Toaster, toast } from 'sonner'
 import { SessionErrorModal } from '@/components/auth/session-error-modal'
+import { SessionExpiryWarning } from '@/components/auth/session-expiry-warning'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -42,6 +43,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         }}
       />
       <SessionErrorModal />
+      <SessionExpiryWarning />
       {children}
     </QueryClientProvider>
   )

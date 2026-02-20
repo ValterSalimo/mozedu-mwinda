@@ -18,6 +18,7 @@ import { Input, Button, Tabs, TabsList, TabsTrigger, TabsContent, Badge } from '
 import { useUser } from '@/lib/stores'
 import { useStudentAssignments } from '@/lib/hooks/use-assignments'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
 export default function StudentAssignmentsPage() {
     const t = useTranslations('student') // Using student namespace, assuming keys exist or will fallback
@@ -186,7 +187,7 @@ export default function StudentAssignmentsPage() {
                                                     <span>{t('assignments.due')} {new Date(assignment.dueDate).toLocaleDateString()}</span>
                                                 </div>
 
-                                                <Button className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                                                <Button className="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-all" onClick={() => toast.info(t('assignments.comingSoon'))}>
                                                     <Upload className="h-4 w-4" />
                                                     {t('assignments.submitAssignment')}
                                                 </Button>

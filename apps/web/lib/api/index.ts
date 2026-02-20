@@ -10,6 +10,8 @@ export {
   ApiError,
   setTokens,
   getAccessToken,
+  getTokenExpiresAt,
+  getFreshAccessToken,
   clearTokens,
   authApi,
   messagingApi,

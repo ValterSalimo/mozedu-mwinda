@@ -893,7 +893,23 @@
       "about": "Sobre o Seu Horário"
     },
     "assignmentsNav": "Trabalhos",
-    "practicalsNav": "Práticas"
+    "practicalsNav": "Práticas",
+    "studentCardNav": "Cartão de Estudante",
+    "card": {
+      "title": "Cartão de Estudante",
+      "subtitle": "Veja e baixe seu cartão de estudante",
+      "downloadPDF": "Baixar PDF",
+      "showFront": "Mostrar Frente",
+      "showBack": "Mostrar Verso",
+      "cardNumber": "Número do Cartão",
+      "status": "Estado",
+      "active": "Ativo",
+      "issuedDate": "Data de Emissão",
+      "expiryDate": "Data de Validade",
+      "classicCardMessage": "A sua escola ainda não gerou um cartão personalizado. Este é o cartão padrão.",
+      "downloadSuccess": "Cartão baixado com sucesso!",
+      "downloadError": "Falha ao baixar o cartão"
+    }
   },
   "parent": {
     "portal": "Portal do Encarregado",
@@ -923,6 +939,7 @@
     "noChildren": "Sem educandos associados",
     "noChildrenDescription": "Não foi possível encontrar educandos associados à sua conta.",
     "viewFullReport": "Ver Relatório Completo",
+    "viewStudentCard": "Ver Cartão de Estudante",
     "contactTeacher": "Contactar Professor",
     "makePayment": "Fazer Pagamento",
     "gradesBySubject": "Notas por Disciplina",
@@ -1223,6 +1240,19 @@
       "noRecentGrades": "Nenhuma nota recente.",
       "feedbackComingSoon": "Funcionalidade de feedback em breve.",
       "eventsComingSoon": "Funcionalidade de eventos em breve."
+    },
+    "studentCard": {
+      "title": "Cartão de Estudante",
+      "student": "Estudante",
+      "downloadPDF": "Baixar PDF",
+      "showFront": "Mostrar Frente",
+      "showBack": "Mostrar Verso",
+      "cardNumber": "Número do Cartão",
+      "status": "Estado",
+      "active": "Ativo",
+      "classicCardMessage": "A sua escola ainda não gerou um cartão personalizado. Este é o cartão padrão.",
+      "downloadSuccess": "Cartão baixado com sucesso!",
+      "downloadError": "Falha ao baixar o cartão"
     }
   },
   "school": {

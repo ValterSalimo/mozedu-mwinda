@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { useUser } from '@/lib/stores'
 import { useParentId, useCurrentEntity } from '@/lib/hooks/use-current-entity'
+import { toast } from 'sonner'
 import { 
   useParentChildren, 
   useChildGrades, 
@@ -137,11 +138,11 @@ export default function NotificationsPage() {
           <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={() => toast.info('Coming Soon')}>
             <Settings className="h-4 w-4 mr-2" />
             {t('settings')}
           </Button>
-          <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+          <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700 hover:bg-red-50" onClick={() => toast.info('Coming Soon')}>
             <Trash2 className="h-4 w-4 mr-2" />
             {t('clearAll')}
           </Button>

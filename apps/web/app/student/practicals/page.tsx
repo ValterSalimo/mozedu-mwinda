@@ -16,6 +16,7 @@ import { Input, Button, Tabs, TabsList, TabsTrigger, TabsContent, Badge } from '
 import { useUser } from '@/lib/stores'
 import { useStudentPracticals } from '@/lib/hooks/use-assignments'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
 export default function StudentPracticalsPage() {
     const t = useTranslations('student')
@@ -94,7 +95,7 @@ export default function StudentPracticalsPage() {
                             <p className="max-w-xl text-emerald-50/90 leading-relaxed">
                                 {pendingPracticals[0].description || 'Get ready for your practical session. Make sure to review the safety guidelines and bring necessary equipment.'}
                             </p>
-                            <Button size="lg" className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold border-none mt-4">
+                            <Button size="lg" className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold border-none mt-4" onClick={() => toast.info('Coming Soon')}>
                                 View Instructions
                             </Button>
                         </div>

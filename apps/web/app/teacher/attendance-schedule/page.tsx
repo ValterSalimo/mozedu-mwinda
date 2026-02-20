@@ -8,6 +8,8 @@ import { Button } from "@repo/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { Badge } from "@repo/ui/badge";
 import { useToast } from "@repo/ui";
+import { apiClient } from "@/lib/api/client";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 interface ScheduledSession {
   id: string;
@@ -37,20 +39,17 @@ export default function AttendanceSchedulePage() {
   const t = useTranslations('teacher');
   const { toast } = useToast();
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
-  const teacherId = "TEACHER_ID"; // Get from auth context
+  const user = useAuthStore((s) => s.user);
+  const teacherId = user?.entityId || user?.id || '';
 
   // Fetch scheduled sessions for today
   const { data: sessions, isLoading } = useQuery({
     queryKey: ["scheduledSessions", teacherId, selectedDate],
-    queryFn: async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/timetable-attendance/teachers/${teacherId}/scheduled?date=${selectedDate}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      return res.json();
-    },
+    queryFn: () =>
+      apiClient<ScheduledSession[]>(
+        `/api/v1/timetable-attendance/teachers/${teacherId}/scheduled?date=${selectedDate}`
+      ),
+    enabled: !!teacherId,
   });
 
   // Fetch comparison stats for the week
@@ -60,36 +59,22 @@ export default function AttendanceSchedulePage() {
 
   const { data: comparison } = useQuery({
     queryKey: ["attendanceComparison", teacherId, startOfWeek],
-    queryFn: async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/timetable-attendance/classes/CLASS_ID/comparison?start_date=${formatDate(startOfWeek)}&end_date=${formatDate(endOfWeek)}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      return res.json();
-    },
+    queryFn: () =>
+      apiClient<AttendanceComparison>(
+        `/api/v1/timetable-attendance/teachers/${teacherId}/comparison?start_date=${formatDate(startOfWeek)}&end_date=${formatDate(endOfWeek)}`
+      ),
+    enabled: !!teacherId,
   });
 
   const startSession = async (sessionId: string) => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/attendance/sessions/${sessionId}/start`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      
-      if (res.ok) {
-        toast({
-          title: t('attendanceSchedule.successTitle'),
-          description: t('attendanceSchedule.sessionStarted'),
-        });
-      }
+      await apiClient(`/api/v1/attendance/sessions/${sessionId}/start`, {
+        method: "POST",
+      });
+      toast({
+        title: t('attendanceSchedule.successTitle'),
+        description: t('attendanceSchedule.sessionStarted'),
+      });
     } catch (error) {
       toast({
         title: t('attendanceSchedule.errorTitle'),
